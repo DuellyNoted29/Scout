@@ -12,14 +12,17 @@ import static jdk.nashorn.internal.objects.NativeRegExp.source;
 public class NumberAdditionGui extends javax.swing.JFrame {
 
     private int robotSelection = 0; // a number between 0 and 5
-
+    
    
     private RobotData[] dataArray = new RobotData[] {
     
         new RobotData(), new RobotData(), new RobotData(),
         new RobotData(), new RobotData(), new RobotData()
     };
-    private void Dtatatatata (){
+    
+    private File directory = new File("./Team Data");
+    
+    private void Datatatatata (){
         dataArray = new RobotData[] {
             new RobotData(), new RobotData(), new RobotData(),
             new RobotData(), new RobotData(), new RobotData()
@@ -37,22 +40,21 @@ public class NumberAdditionGui extends javax.swing.JFrame {
     private void initComponents() {
 
         TeamList = new javax.swing.JPanel();
-        NewTeamName = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        NewTeamNumber = new javax.swing.JTextField();
+        NewTeamNamber = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        AddTeamButton = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
+        NewTeamNam = new javax.swing.JTextField();
+        DeleteTeam1 = new javax.swing.JButton();
+        matchId = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         PointPanel = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea2 = new javax.swing.JTextArea();
+        robotInfo = new javax.swing.JTextArea();
         ScaleControl = new javax.swing.JCheckBox();
         AutoRp = new javax.swing.JCheckBox();
         AutoCross = new javax.swing.JCheckBox();
@@ -65,6 +67,8 @@ public class NumberAdditionGui extends javax.swing.JFrame {
         AddTeam = new javax.swing.JButton();
         DeleteTeam = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jButton8 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximizedBounds(new java.awt.Rectangle(4000, 2400, 4000, 2400));
@@ -75,58 +79,59 @@ public class NumberAdditionGui extends javax.swing.JFrame {
 
         jLabel2.setText("Team Number");
 
-        AddTeamButton.setText("Add");
-        AddTeamButton.addMouseListener(new java.awt.event.MouseAdapter() {
+        DeleteTeam1.setText("Choose Directory");
+        DeleteTeam1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                AddTTeam(evt);
+                chooseDirectory(evt);
             }
         });
 
-        jLabel3.setText("Which Button");
+        jLabel3.setText("Match Id");
 
         javax.swing.GroupLayout TeamListLayout = new javax.swing.GroupLayout(TeamList);
         TeamList.setLayout(TeamListLayout);
         TeamListLayout.setHorizontalGroup(
             TeamListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(TeamListLayout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(TeamListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(AddTeamButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(TeamListLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(TeamListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(TeamListLayout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(NewTeamName, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(TeamListLayout.createSequentialGroup()
-                                .addGroup(TeamListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel3))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(TeamListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jTextField1)
-                                    .addComponent(NewTeamNumber, javax.swing.GroupLayout.DEFAULT_SIZE, 139, Short.MAX_VALUE))))))
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(NewTeamNamber, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(TeamListLayout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(NewTeamNam, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(439, 439, 439))
+            .addGroup(TeamListLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(TeamListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(DeleteTeam1)
+                    .addGroup(TeamListLayout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(matchId)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         TeamListLayout.setVerticalGroup(
             TeamListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, TeamListLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(TeamListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(NewTeamName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
+                    .addComponent(jLabel1)
+                    .addComponent(NewTeamNam, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(TeamListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(NewTeamNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(NewTeamNamber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(DeleteTeam1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(TeamListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(AddTeamButton)
-                .addGap(78, 78, 78))
+                    .addComponent(matchId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
+                .addGap(130, 130, 130))
         );
 
         jButton1.setText("jButton1");
@@ -156,15 +161,6 @@ public class NumberAdditionGui extends javax.swing.JFrame {
             }
         });
 
-        jButton4.setText("jButton1");
-        jButton4.setMaximumSize(new java.awt.Dimension(100, 50));
-        jButton4.setMinimumSize(new java.awt.Dimension(100, 50));
-        jButton4.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                buttonFourClicked(evt);
-            }
-        });
-
         jButton5.setText("jButton1");
         jButton5.setMaximumSize(new java.awt.Dimension(100, 50));
         jButton5.setMinimumSize(new java.awt.Dimension(100, 50));
@@ -185,9 +181,9 @@ public class NumberAdditionGui extends javax.swing.JFrame {
 
         jScrollPane2.setPreferredSize(new java.awt.Dimension(300, 300));
 
-        jTextArea2.setColumns(20);
-        jTextArea2.setRows(5);
-        jScrollPane2.setViewportView(jTextArea2);
+        robotInfo.setColumns(20);
+        robotInfo.setRows(5);
+        jScrollPane2.setViewportView(robotInfo);
 
         ScaleControl.setText("Scale Control");
 
@@ -222,7 +218,7 @@ public class NumberAdditionGui extends javax.swing.JFrame {
         PointPanel.setLayout(PointPanelLayout);
         PointPanelLayout.setHorizontalGroup(
             PointPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 473, Short.MAX_VALUE)
+            .addGap(0, 423, Short.MAX_VALUE)
             .addGroup(PointPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(PointPanelLayout.createSequentialGroup()
                     .addGap(64, 64, 64)
@@ -245,7 +241,7 @@ public class NumberAdditionGui extends javax.swing.JFrame {
                                 .addComponent(BlocksDelivered, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(PCubeAmount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 349, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addContainerGap(60, Short.MAX_VALUE)))
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         PointPanelLayout.setVerticalGroup(
             PointPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -292,11 +288,17 @@ public class NumberAdditionGui extends javax.swing.JFrame {
         });
 
         jButton7.setText("save all");
-        jButton7.addMouseListener(new java.awt.event.MouseAdapter() {
+
+        jButton4.setText("jButton1");
+        jButton4.setMaximumSize(new java.awt.Dimension(100, 50));
+        jButton4.setMinimumSize(new java.awt.Dimension(100, 50));
+        jButton4.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                SaveAllTeams(evt);
+                buttonFourClicked(evt);
             }
         });
+
+        jButton8.setText("Save New Team");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -308,65 +310,56 @@ public class NumberAdditionGui extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(TeamList, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                            .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(jButton7))
-                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                            .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGap(14, 14, 14)
-                                            .addComponent(AddTeam, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(DeleteTeam, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(15, 15, 15)))
-                        .addComponent(PointPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(472, Short.MAX_VALUE))
+                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(DeleteTeam, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(AddTeam, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 69, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(TeamList, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButton8)
+                        .addGap(4, 4, 4)
+                        .addComponent(jButton7)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(PointPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(547, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(PointPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(TeamList, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(40, 40, 40)
-                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(TeamList, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(34, 34, 34)
-                                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(35, 35, 35)
+                                .addComponent(AddTeam)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton7)
-                                .addGap(8, 8, 8)))
-                        .addComponent(DeleteTeam)
-                        .addGap(9, 9, 9)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(AddTeam))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(54, 54, 54))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(PointPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(355, 355, 355))
+                                .addComponent(DeleteTeam)))
+                        .addGap(133, 133, 133)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButton7)
+                            .addComponent(jButton8))))
+                .addContainerGap(411, Short.MAX_VALUE))
         );
 
         pack();
@@ -395,10 +388,9 @@ public class NumberAdditionGui extends javax.swing.JFrame {
         // TODO add your handling code here:
         saveData();
         
-        JFileChooser chooser = new JFileChooser();
-        chooser.showOpenDialog(this);
-        File file = chooser.getSelectedFile();
-        dataArray[robotSelection].save(file);
+        RobotData currentData = dataArray[robotSelection];
+        File file = getCurrentSaveSpot(currentData);
+        currentData.save(file);
         System.out.println("Hello");
         
     }//GEN-LAST:event_savePressEvent
@@ -407,9 +399,10 @@ public class NumberAdditionGui extends javax.swing.JFrame {
         
         RobotData data = dataArray[robotSelection];
         
-        
-        data.setTeamNumber(Integer.parseInt(NewTeamNumber.getText()));
-        
+        data.setTeamNam(NewTeamNam.getText());
+        data.setTeamNamber(Integer.parseInt(NewTeamNamber.getText()));
+        data.setInfo(robotInfo.getText());
+        data.setMatchId(Integer.parseInt(matchId.getText()));       
         data.setAutoCross(AutoCross.isSelected());
         data.setAutoScaleControl(ScaleControl.isSelected());
         data.setAutoRP(AutoRp.isSelected());
@@ -418,16 +411,19 @@ public class NumberAdditionGui extends javax.swing.JFrame {
         data.setPCubes(PCubeAmount.getValue());
         
     }
+    private File getCurrentSaveSpot(RobotData currentData){
+        return new File(this.directory, "" + currentData.getTeamNamber() + "/" + currentData.getMatchId() + ".dat");
+    }
     
     private void loadPressEvent(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loadPressEvent
         // TODO add your handling code here:
-        JFileChooser chooser = new JFileChooser();
-        chooser.showOpenDialog(this);
-        File file = chooser.getSelectedFile();
+        saveData();
+        
         RobotData data = null;
       
         try {
-         FileInputStream fileIn = new FileInputStream(file);
+            RobotData currentData = dataArray[robotSelection];
+         FileInputStream fileIn = new FileInputStream(getCurrentSaveSpot(currentData));
          ObjectInputStream in = new ObjectInputStream(fileIn);
          data = (RobotData) in.readObject();
          in.close();
@@ -449,15 +445,7 @@ public class NumberAdditionGui extends javax.swing.JFrame {
         System.out.println("Goodbye");
         
     }//GEN-LAST:event_loadPressEvent
-
-    private void buttonOneClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonOneClicked
-        // TODO add your handling code here:
-        saveData(); // save data for the current one
-        robotSelection = 0;
-        loadData();
-        
-    }//GEN-LAST:event_buttonOneClicked
-
+ 
     private void buttonTwoClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonTwoClicked
         // TODO add your handling code here:
         saveData(); // save data for the current one
@@ -498,20 +486,26 @@ public class NumberAdditionGui extends javax.swing.JFrame {
         
     }//GEN-LAST:event_buttonSixClicked
 
-    private void AddTTeam(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AddTTeam
-        
-        
-        int number = dataArray[robotSelection].getTeamNumber();
-        int BoxNumber = Integer.parseInt(jTextField1.getText());
-        robotSelection = BoxNumber;
-        
-        
-    }//GEN-LAST:event_AddTTeam
+    private void buttonOneClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonOneClicked
+        // TODO add your handling code here:
+        saveData(); // save data for the current one
+        robotSelection = 0;
+        loadData();
 
-    private void SaveAllTeams(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SaveAllTeams
-        saveData();
-    }//GEN-LAST:event_SaveAllTeams
-    
+    }//GEN-LAST:event_buttonOneClicked
+
+    private void chooseDirectory(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_chooseDirectory
+         
+        JFileChooser chooser = new JFileChooser(this.directory.getParentFile());
+        chooser.showOpenDialog(this);
+        this.directory = chooser.getSelectedFile();
+        if(!this.directory.isDirectory()){
+            throw new RuntimeException("Why would you do othis? Please choose a directory next time. I'm crashing your program");
+        }
+        
+        
+    }//GEN-LAST:event_chooseDirectory
+
     public void loadData(){
         
         RobotData data = dataArray[robotSelection];
@@ -522,7 +516,13 @@ public class NumberAdditionGui extends javax.swing.JFrame {
       AutoSwitch.setSelected(data.isAutoSwitch());
       BlocksDelivered.setValue(data.getCubes());
       PCubeAmount.setValue(data.getPCubes());
-        
+      NewTeamNam.setText(data.getTeamNam());
+      NewTeamNamber.setText("" + data.getTeamNamber());
+      robotInfo.setText(data.getinfo());
+      matchId.setText("" + data.getMatchId());
+     
+      
+      
     }
 
     public static void main(String args[]) {
@@ -539,7 +539,6 @@ public class NumberAdditionGui extends javax.swing.JFrame {
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AddTeam;
-    private javax.swing.JButton AddTeamButton;
     private javax.swing.JCheckBox AutoCross;
     private javax.swing.JLabel AutoLabelName;
     private javax.swing.JCheckBox AutoRp;
@@ -547,8 +546,9 @@ public class NumberAdditionGui extends javax.swing.JFrame {
     private javax.swing.JSlider BlocksDelivered;
     private javax.swing.JLabel CubeAmountLabel;
     private javax.swing.JButton DeleteTeam;
-    private javax.swing.JTextField NewTeamName;
-    private javax.swing.JTextField NewTeamNumber;
+    private javax.swing.JButton DeleteTeam1;
+    private javax.swing.JTextField NewTeamNam;
+    private javax.swing.JTextField NewTeamNamber;
     private javax.swing.JSlider PCubeAmount;
     private javax.swing.JLabel PCubeAmountLabel;
     private javax.swing.JPanel PointPanel;
@@ -561,12 +561,13 @@ public class NumberAdditionGui extends javax.swing.JFrame {
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
+    private javax.swing.JButton jButton8;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextArea jTextArea2;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField matchId;
+    private javax.swing.JTextArea robotInfo;
     // End of variables declaration//GEN-END:variables
 
 }

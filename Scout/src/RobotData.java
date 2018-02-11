@@ -19,19 +19,47 @@ public class RobotData implements Serializable{
     private boolean autoScaleControl = false;
     private boolean autoRP = false;
     private boolean autoSwitch = false;
-    private int Cubes = 0;
-    private int PCubes = 0;
+    private int cubes = 0;
+    private int pCubes = 0; // Amount of power cubes delivered for power ups
+    private String teamNam = "";
+    private int teamNamber = 0;
+    private String info = "";
+    private int matchId = 0;
+    
+    public void setMatchId (int matchId){
+        this.matchId = matchId;
+    }
+    
+    public int getMatchId (){
+        return matchId;
+    }
+    
+    public void setInfo (String info){
+        this.info = info;
+    }
+    public String getinfo ()
+    {
+        return info;
+    }
+    
+    public void setTeamNamber (int teamNamber){
+        this.teamNamber = teamNamber;
+    }
+    public int getTeamNamber(){
+        return teamNamber;
+    }
+    
+    
+    public void setTeamNam (String teamNam)
+    {
+        this.teamNam = teamNam;
+    }
+    public String getTeamNam()
+    {
+        return teamNam;
+    }
+    
 
-    
-    
-    
-    
-    public void setTeamNumber(int teamNumber){
-        this.teamNumber = teamNumber;
-    }
-    public int getTeamNumber(){
-        return teamNumber;
-    }
     
     
     public void setTeamName(String teamName){
@@ -77,22 +105,23 @@ public class RobotData implements Serializable{
     }
    
     public int getCubes() {
-        return Cubes;
+        return cubes;
     }
     public void setCubes(int Cubes) {
-        this.Cubes = Cubes;
+        this.cubes = Cubes;
     }
 
     public int getPCubes() {
-        return PCubes;
+        return pCubes;
     }
     public void setPCubes(int PCubes) {
-        this.PCubes = PCubes;
+        this.pCubes = PCubes;
     }
     
     
     public void save(File file){
         try {
+            file.getParentFile().mkdirs();
          FileOutputStream fileOut = new FileOutputStream(file);
          ObjectOutputStream out = new ObjectOutputStream(fileOut);
          out.writeObject(this);
